@@ -1,0 +1,82 @@
+{{/*
+    haproxy-config.cfg: contains the main config with helper backends that are used to terminate
+    					encryption before finally sending to a host_be which is the backend that is the final
+    					backend for a route and contains all the endpoints for the service
+*/}}
+{{ define "/var/lib/haproxy/conf/haproxy.config" }}
+{{ $workingDir := .WorkingDir }}
+global
+  # maxconn 4096
+  daemon
+  ca-base /etc/ssl
+  crt-base /etc/ssl
+  stats socket /var/lib/haproxy/run/haproxy.sock mode 600 level admin
+  stats timeout 2m
+
+defaults
+  # maxconn 4096
+  # Add x-forwarded-for header.
+  timeout connect 5s
+  timeout client 30s
+  timeout server 30s
+  # Long timeout for WebSocket connections.
+  timeout tunnel 1h
+
+{{ if and (and (ne .StatsUser "") (ne .StatsPassword "")) (gt .StatsPort 0) }}
+listen stats :{{.StatsPort}}
+    mode http
+    stats enable
+    stats hide-version
+    stats realm Haproxy\ Statistics
+    stats uri /
+    stats auth {{.StatsUser}}:{{.StatsPassword}}
+{{ end }}
+
+frontend public
+  bind :1883
+
+  mode tcp
+  tcp-request inspect-delay 5s
+  tcp-request content accept if HTTP
+
+  # map to http backend
+  # Search from most specific to general path (host case).
+  # Note: If no match, haproxy uses the default_backend, no other
+  #       use_backend directives below this will be processed.
+  use_backend be_tcp_%[base,map_beg(/var/lib/haproxy/conf/os_tcp_be.map)]
+
+##-------------- app level backends ----------------
+{{/*
+    Create backends as follows:
+        1. if the config is terminated at the edge or termination is not set create a be_http_<service> backend,
+            traffic will be sent unencrypted to the pods
+        2. if the config is terminated at the pod create a be_tcp_<service> backend, we will use SNI to discover
+            where to send the traffic but should run the be in tcp mode
+        3. if the config is terminated at the
+*/}}
+{{ range $id, $serviceUnit := .State }}
+        {{ range $cfgIdx, $cfg := $serviceUnit.ServiceAliasConfigs }}
+backend be_tcp_{{$cfgIdx}}
+  balance source
+  hash-type consistent
+  timeout check 5000ms
+                {{ range $idx, $endpoint := $serviceUnit.EndpointTable }}
+  server {{$endpoint.ID}} {{$endpoint.IP}}:{{$endpoint.Port}} check inter 5000ms
+                {{ end }}
+        {{ end  }}{{/* $serviceUnit.ServiceAliasConfigs*/}}
+{{ end }}{{/* $serviceUnit */}}
+
+{{ end }}{{/* end haproxy config template */}}
+
+{{/*--------------------------------- END OF HAPROXY CONFIG, BELOW ARE MAPPING FILES ------------------------*/}}
+{{/*
+    os_tcp_be.map: contains a mapping of www.example.com -> <service name>.  This map is used to discover the correct backend
+                        by attaching a prefix (be_tcp_ or be_secure_) by use_backend statements if acls are matched.
+*/}}
+{{ define "/var/lib/haproxy/conf/os_tcp_be.map" }}
+{{   range $id, $serviceUnit := .State }}
+{{     range $idx, $cfg := $serviceUnit.ServiceAliasConfigs }}
+{{$cfg.Host}} {{$idx}}
+{{     end }}
+{{   end }}
+{{ end }}{{/* end tcp host map template */}}
