@@ -1,0 +1,275 @@
+{
+  "kind": "List",
+  "apiVersion": "v1beta3",
+  "metadata": {},
+  "items": [
+    {
+      "kind": "ServiceAccount",
+      "apiVersion": "v1",
+      "metadata": {
+        "name": "ams-service-account"
+      },
+      "secrets": [
+        {
+          "name": "ams-app-secret"
+        }
+      ]
+    },
+    {
+      "kind": "Secret",
+      "apiVersion": "v1",
+      "metadata": {
+        "annotations": {
+          "description": "Default secret file containing A-MQ 'broker.ks' and 'broker.ts'"
+        },
+        "name": "ams-app-secret"
+      },
+      "data": {
+        "broker.ks": "/u3+7QAAAAIAAAABAAAAAQAQYnJva2VyLWxvY2FsaG9zdAAAAQ5h5g31AAACuTCCArUwDgYKKwYBBAEqAhEBAQUABIICoZck77n593MIRhgJT9yXnRDfuDAqB9Mg0WYObLc1ENrxxw/4iY7N5Ii0+XFkPq9GbcULe+u6xFbtBztzGAeyMDwgBujTdVCsL9sfL5VmJg8yRCh5upgVPP/A/csdZ5JNA9BGEq7C6fKbJ1XGqdnvix2h50JGLSVOTsxMt6AYxhng1cHFiRkCNNrtAjj7//JBD9BnaLWeE89WOjb8CQavVUtBCa5zcFViPjK1RLjH9BfVggvQSRzwOC2WeTS11p8lMSnFLs+UfgNcNtt65Dz+hvXdwHQoUPy0W8H4w40FIS6I3LP+LikO2DPl1xatEqWiRFQgfL0S0rPyPX/EWkfB4kjl65kq4fXKpc7Fk4cvdzk/YHdk2SAlXqTc7hu9iHvN2/tAZ5p43UpeyjMYzrhhb4wUzAS96kLGB3KMPDIpDQtbX0XOT6UlF9G/FUfgJDTWCk5OL2YSXBel9T9ovF5xZCVfaQuxhfCpfNihTuS8cJ+NI8il1uzxMQUif3u3NCsbVUNbUIejlj1NxgCM22WFMzinTsOofuC6GbXQkBG+tMkz5dmyDFZe0fpw8eCWNiEQydJOi/DXd564B4Ui9V7ie9OLSlcnu/6o5bYIqznmisL85+MTNL1x96J0uDe2KNKSCXJJ2C078BfhkPUwFExvrYRR8d1NPZi12xg6slJsCKngrYZCvUJ4y80ZnoNbvfZfqGZhC+s6twrrj0UP/HYWAHSZQ74sAEGTOVtNiKjmRRcXjK0mLG3XAKWn93ppr0ZataPPLlQYMfNBjdnSR0SXKGdgEhqplgFCrbmV1fPBBU+QJXG1fDvxSBjxzWjom8LDbcKhilL7VM2GFNjatEBw6qING6pqywC1TqsJTvU39GFv4RQeZ/QZYdF5zpJuqr2HnqoAAAABAAVYLjUwOQAAAlAwggJMMIIBtQIERTfILjANBgkqhkiG9w0BAQQFADBtMRAwDgYDVQQGEwdVbmtub3duMRAwDgYDVQQIEwdVbmtub3duMRAwDgYDVQQHEwdVbmtub3duMRAwDgYDVQQKEwdVbmtub3duMQ8wDQYDVQQLEwZicm9rZXIxEjAQBgNVBAMTCWxvY2FsaG9zdDAeFw0wNjEwMTkxODQ3MTBaFw0wNzAxMTcxODQ3MTBaMG0xEDAOBgNVBAYTB1Vua25vd24xEDAOBgNVBAgTB1Vua25vd24xEDAOBgNVBAcTB1Vua25vd24xEDAOBgNVBAoTB1Vua25vd24xDzANBgNVBAsTBmJyb2tlcjESMBAGA1UEAxMJbG9jYWxob3N0MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDcqHFHTs7GOrMjDu/ozQlzmiD7nKWZPvikeChRLDGtRVU+/jiYEKg8xKFVtW53s9GGJXuTcR651XN8MQ1X1sWTLHBOCWasNcdBdJ1//2mbMRC05avlU7ghXSL/EWLoWqE1wKfA62jl/s/FkYB89TPZ/6gWdfLEFRLdbdgzpmMxTQIDAQABMA0GCSqGSIb3DQEBBAUAA4GBANbLWd27NNemx1AJI9AK7r6tEAJa/Ji0eeeZcFMxGJCwW+uFwNKwtOkYOW7HGRJg5FWv9+Xg4MgN5gI0IDqo/zp5uqn4zKbgDkNi6X986rglSyl1nFGgDRu6U0vJa92NO3F4iuSeIeCsy34bL/9jpYG3RVPzJ07MekCUB44WYVB6yVfbrVdeKZYvcQ9CPui8u4c0OGE=",
+        "broker.ts": "/u3+7QAAAAIAAAABAAAAAgAQYnJva2VyLWxvY2FsaG9zdAAAAQ5h6LaDAAVYLjUwOQAAAlAwggJMMIIBtQIERTfILjANBgkqhkiG9w0BAQQFADBtMRAwDgYDVQQGEwdVbmtub3duMRAwDgYDVQQIEwdVbmtub3duMRAwDgYDVQQHEwdVbmtub3duMRAwDgYDVQQKEwdVbmtub3duMQ8wDQYDVQQLEwZicm9rZXIxEjAQBgNVBAMTCWxvY2FsaG9zdDAeFw0wNjEwMTkxODQ3MTBaFw0wNzAxMTcxODQ3MTBaMG0xEDAOBgNVBAYTB1Vua25vd24xEDAOBgNVBAgTB1Vua25vd24xEDAOBgNVBAcTB1Vua25vd24xEDAOBgNVBAoTB1Vua25vd24xDzANBgNVBAsTBmJyb2tlcjESMBAGA1UEAxMJbG9jYWxob3N0MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDcqHFHTs7GOrMjDu/ozQlzmiD7nKWZPvikeChRLDGtRVU+/jiYEKg8xKFVtW53s9GGJXuTcR651XN8MQ1X1sWTLHBOCWasNcdBdJ1//2mbMRC05avlU7ghXSL/EWLoWqE1wKfA62jl/s/FkYB89TPZ/6gWdfLEFRLdbdgzpmMxTQIDAQABMA0GCSqGSIb3DQEBBAUAA4GBANbLWd27NNemx1AJI9AK7r6tEAJa/Ji0eeeZcFMxGJCwW+uFwNKwtOkYOW7HGRJg5FWv9+Xg4MgN5gI0IDqo/zp5uqn4zKbgDkNi6X986rglSyl1nFGgDRu6U0vJa92NO3F4iuSeIeCsy34bL/9jpYG3RVPzJ07MekCUB44WYVB645/KzFsqFGK77fihoRHCLSowods="
+      }
+    },
+    {
+      "apiVersion": "v1",
+      "kind": "Service",
+      "metadata": {
+        "annotations": {
+          "description": "The shared messaging service's amqp ssl port."
+        },
+        "labels": {
+          "application": "acme-messaging-service"
+        },
+        "name": "ams-amqp-ssl"
+      },
+      "spec": {
+        "ports": [
+          {
+            "port": 5671,
+            "targetPort": 5671
+          }
+        ],
+        "selector": {
+          "deploymentConfig": "ams-amq"
+        }
+      }
+    },
+    {
+      "apiVersion": "v1",
+      "kind": "Service",
+      "metadata": {
+        "annotations": {
+          "description": "The shared messaging service's mqtt port."
+        },
+        "labels": {
+          "application": "acme-messaging-service"
+        },
+        "name": "ams-mqtt"
+      },
+      "spec": {
+        "ports": [
+          {
+            "port": 1883,
+            "targetPort": 1883
+          }
+        ],
+        "selector": {
+          "deploymentConfig": "ams-amq"
+        }
+      }
+    },
+    {
+      "apiVersion": "v1",
+      "kind": "Service",
+      "metadata": {
+        "annotations": {
+          "description": "The shared messaging service's tcp (openwire) port."
+        },
+        "labels": {
+          "application": "acme-messaging-service"
+        },
+        "name": "ams-tcp"
+      },
+      "spec": {
+        "ports": [
+          {
+            "port": 61616,
+            "targetPort": 61616
+          }
+        ],
+        "selector": {
+          "deploymentConfig": "ams-amq"
+        }
+      }
+    },
+    {
+      "apiVersion": "v1",
+      "kind": "Service",
+      "metadata": {
+        "annotations": {
+          "description": "The shared messaging service's tcp ssl (openwire) port."
+        },
+        "labels": {
+          "application": "acme-messaging-service"
+        },
+        "name": "ams-tcp-ssl"
+      },
+      "spec": {
+        "ports": [
+          {
+            "port": 61617,
+            "targetPort": 61617
+          }
+        ],
+        "selector": {
+          "deploymentConfig": "ams-amq"
+        }
+      }
+    },
+    {
+      "apiVersion": "v1",
+      "kind": "DeploymentConfig",
+      "metadata": {
+        "labels": {
+          "application": "acme-messaging-service"
+        },
+        "name": "ams-amq"
+      },
+      "spec": {
+        "replicas": 1,
+        "selector": {
+          "deploymentConfig": "ams-amq"
+        },
+        "strategy": {
+          "type": "Recreate"
+        },
+        "template": {
+          "metadata": {
+            "labels": {
+              "application": "acme-messaging-service",
+              "deploymentConfig": "ams-amq"
+            },
+            "name": "ams-amq"
+          },
+          "spec": {
+            "containers": [
+              {
+                "env": [
+                  {
+                    "name": "AMQ_USER",
+                    "value": "userC44"
+                  },
+                  {
+                    "name": "AMQ_PASSWORD",
+                    "value": "nHoXbLAr"
+                  },
+                  {
+                    "name": "AMQ_PROTOCOLS",
+                    "value": "openwire"
+                  },
+                  {
+                    "name": "AMQ_QUEUES",
+                    "value": ""
+                  },
+                  {
+                    "name": "AMQ_TOPICS",
+                    "value": ""
+                  },
+                  {
+                    "name": "AMQ_ADMIN_USERNAME",
+                    "value": "userqNk"
+                  },
+                  {
+                    "name": "AMQ_ADMIN_PASSWORD",
+                    "value": "Aay7hRgO"
+                  },
+                  {
+                    "name": "AMQ_MESH_SERVICE_NAME",
+                    "value": "ams-amq-tcp"
+                  },
+                  {
+                    "name": "AMQ_KEYSTORE_TRUSTSTORE_DIR",
+                    "value": "/etc/amq-secret-volume"
+                  },
+                  {
+                    "name": "AMQ_TRUSTSTORE",
+                    "value": "broker.ts"
+                  },
+                  {
+                    "name": "AMQ_KEYSTORE",
+                    "value": "broker.ks"
+                  }
+                ],
+                "image": "jboss-amq-6",
+                "imagePullPolicy": "Always",
+                "name": "ams-amq",
+                "ports": [
+                  {
+                    "containerPort": 5671,
+                    "name": "amq-amqp-ssl",
+                    "protocol": "TCP"
+                  },
+                  {
+                    "containerPort": 1883,
+                    "name": "amq-mqtt",
+                    "protocol": "TCP"
+                  },
+                  {
+                    "containerPort": 61616,
+                    "name": "amq-tcp",
+                    "protocol": "TCP"
+                  },
+                  {
+                    "containerPort": 61617,
+                    "name": "amq-tcp-ssl",
+                    "protocol": "TCP"
+                  }
+                ],
+                "readinessProbe": {
+                  "exec": {
+                    "command": [
+                      "/bin/bash",
+                      "-c",
+                      "curl -s -L -u userqNk:Aay7hRgO 'http://localhost:8161/hawtio/jolokia/read/org.apache.activemq:type=Broker,brokerName=*,service=Health/CurrentStatus' | grep -q '\"CurrentStatus\" *: *\"Good\"'"
+                    ]
+                  }
+                },
+                "volumeMounts": [
+                  {
+                    "mountPath": "/etc/amq-secret-volume",
+                    "name": "ams-secret-volume",
+                    "readOnly": true
+                  }
+                ]
+              }
+            ],
+            "serviceAccount": "ams-service-account",
+            "volumes": [
+              {
+                "name": "ams-secret-volume",
+                "secret": {
+                  "secretName": "ams-app-secret"
+                }
+              }
+            ]
+          }
+        },
+        "triggers": [
+          {
+            "imageChangeParams": {
+              "automatic": true,
+              "containerNames": [
+                "ams-amq"
+              ],
+              "from": {
+                "kind": "ImageStreamTag",
+                "name": "jboss-amq-6:6.2",
+                "namespace": "openshift"
+              }
+            },
+            "type": "ImageChange"
+          }
+        ]
+      }
+    }
+  ]
+}
