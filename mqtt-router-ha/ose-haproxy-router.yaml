@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ImageStream
+metadata:
+  annotations:
+    openshift.io/image.dockerRepositoryCheck: 2015-09-04T19:29:15Z
+  creationTimestamp: null
+  name: ose-haproxy-router
+spec:
+  dockerImageRepository: registry.access.redhat.com/openshift3/ose-haproxy-router
+  tags:
+  - name: latest
+  - from:
+      kind: ImageStreamTag
+      name: latest
+    name: v3.0.1.0
