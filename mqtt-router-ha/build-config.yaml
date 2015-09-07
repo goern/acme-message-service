@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: BuildConfig
+metadata:
+  creationTimestamp: null
+  labels:
+    name: mqtt-router-build
+  name: mqtt-router-build
+spec:
+  output:
+    to:
+      kind: ImageStreamTag
+      name: mqtt-router-ha:latest
+  source:
+    contextDir: mqtt-router-ha
+    git:
+      uri: git://github.com/goern/acme-message-service.git
+    type: Git
+  strategy:
+    dockerStrategy:
+      from:
+        kind: ImageStreamTag
+        name: ose-haproxy-router:latest
+    type: Docker
+  triggers:
+  - imageChange:
+      lastTriggeredImageID: registry.access.redhat.com/openshift3/ose-haproxy-router:latest
+    type: ImageChange
